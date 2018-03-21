@@ -40,7 +40,7 @@ public class Metronome : NSObject {
         // Use two triangle waves which are generate for the metronome bips.
         
         // Create a standard audio format deinterleaved float.
-        let format = AVAudioFormat(standardFormatWithSampleRate: 44100.0, channels: 2)!
+        let format = AVAudioFormat(standardFormatWithSampleRate: 44100.0, channels: 2)
         
         // How many audio frames?
         let bipFrames: UInt32 = UInt32(GlobalConstants.kBipDurationSeconds * Float(format.sampleRate))
