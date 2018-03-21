@@ -14,6 +14,8 @@ public enum DrumPart {
     case hitHat
 }
 
+public typealias DrumImage = (image: String, imagePlayed: String)
+
 public class DrumItemNode: ButtonNode {
 
     public var drumPart: DrumPart
@@ -24,25 +26,29 @@ public class DrumItemNode: ButtonNode {
 
     public var delegate: DrumItemDelegate!
 
-    public init(drumPart: DrumPart) {
+    public init(drumPart: DrumPart, size: CGSize? = nil) {
         self.drumPart = drumPart
-
-        switch drumPart {
-        case .bass:
-            self.image = GlobalConstants.bassImage
-            self.imagePlayed = GlobalConstants.bassImagePlayed
-        case .snare:
-            self.image = GlobalConstants.snareImage
-            self.imagePlayed = GlobalConstants.snareImagePlayed
-        case .hitHat:
-            self.image = GlobalConstants.hitHatImage
-            self.imagePlayed = GlobalConstants.hitHatImagePlayed
-        }
-
+        
+        let drumImages = DrumItemNode.getImages(of: drumPart)
+        
+        self.image = drumImages.image
+        self.imagePlayed = drumImages.imagePlayed
+        
         let normalTexture = SKTexture(imageNamed: image)
         let selectedTexture = SKTexture(imageNamed: imagePlayed)
-
-        super.init(normalTexture: normalTexture, selectedTexture: selectedTexture, disabledTexture: nil, size: CGSize(width: 200, height: 200), text: nil)
+        
+        super.init(normalTexture: normalTexture, selectedTexture: selectedTexture, disabledTexture: nil, size: size ?? normalTexture.size(), text: nil)
+    }
+    
+    static func getImages(of drumPart: DrumPart) -> DrumImage {
+        switch drumPart {
+        case .bass:
+            return (GlobalConstants.bassImage, GlobalConstants.bassImagePlayed)
+        case .snare:
+            return (GlobalConstants.snareImage, GlobalConstants.snareImagePlayed)
+        case .hitHat:
+            return (GlobalConstants.hitHatImage, GlobalConstants.hitHatImagePlayed)
+        }
     }
 
     public func playDrumItem() {
