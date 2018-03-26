@@ -187,7 +187,9 @@ extension ViewController: DrumItemDelegate {
         }
         
         if snareView.notesPlayed >= snareView.noteGoal && hitHatView.notesPlayed >= hitHatView.noteGoal && bassView.notesPlayed >= bassView.noteGoal {
-            finishAssessment()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.finishAssessment()
+            })
         }
     }
 }
