@@ -17,5 +17,3 @@ PlaygroundPage.current.liveView = vc
 
 //#-end-hidden-code
 metronome.setTempo(/*#-editable-code Decrease or increase the speed*/100/*#-end-editable-code*/)
-
-
