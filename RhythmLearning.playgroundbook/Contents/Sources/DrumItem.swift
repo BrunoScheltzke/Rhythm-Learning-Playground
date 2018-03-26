@@ -54,6 +54,7 @@ public class DrumItem: UIView {
     //track layer
     public let trackLayer = CAShapeLayer()
     public let shapeLayer = CAShapeLayer()
+    public let pulsatingLayer = CAShapeLayer()
     
     public init(drumPart: DrumPart) {
         self.drumPart = drumPart
@@ -76,9 +77,10 @@ public class DrumItem: UIView {
         
         gradientLayer.frame = bounds
         
-        let circularPath = UIBezierPath(arcCenter: drumImageContainer.center, radius: drumImageContainer.frame.width/2, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: .zero, radius: drumImageContainer.frame.width/2, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         trackLayer.path = circularPath.cgPath
         shapeLayer.path = circularPath.cgPath
+        pulsatingLayer.path = circularPath.cgPath
     }
     
     public override func draw(_ rect: CGRect) {
@@ -89,7 +91,17 @@ public class DrumItem: UIView {
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         layer.insertSublayer(gradientLayer, at: 0)
         
-        let circularPath = UIBezierPath(arcCenter: drumImageContainer.center, radius: drumImageContainer.frame.width/2, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: .zero, radius: drumImageContainer.frame.width/2, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        
+        //pulsating layer
+        pulsatingLayer.path = circularPath.cgPath
+        pulsatingLayer.fillColor = UIColor.clear.cgColor
+        pulsatingLayer.lineWidth = 16
+        pulsatingLayer.lineCap = kCALineCapRound
+        pulsatingLayer.strokeColor = drumCharacteristics.mainColor.withAlphaComponent(1).cgColor
+        pulsatingLayer.position = drumImageContainer.center
+        
+        layer.addSublayer(pulsatingLayer)
         
         //track layer
         trackLayer.path = circularPath.cgPath
@@ -97,6 +109,7 @@ public class DrumItem: UIView {
         trackLayer.lineWidth = 16
         trackLayer.lineCap = kCALineCapRound
         trackLayer.fillColor = UIColor.clear.cgColor
+        trackLayer.position = drumImageContainer.center
         
         layer.addSublayer(trackLayer)
         
@@ -107,6 +120,7 @@ public class DrumItem: UIView {
         shapeLayer.strokeEnd = 0
         shapeLayer.lineCap = kCALineCapRound
         shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.position = drumImageContainer.center
         
         layer.addSublayer(shapeLayer)
     }
@@ -205,6 +219,8 @@ public class DrumItem: UIView {
     }
     
     public func increaseProgress() {
+        pulsatingLayer.pulsate()
+        
         let progress = 0.788/Double(noteGoal)
         
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")

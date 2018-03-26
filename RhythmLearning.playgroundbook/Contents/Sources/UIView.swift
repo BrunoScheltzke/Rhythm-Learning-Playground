@@ -14,3 +14,17 @@ public extension UIView {
         clipsToBounds = true
     }
 }
+
+public extension CALayer {
+    public func pulsate(toValue value: CGFloat = 1.2, withDuration duration: CFTimeInterval = 0.3) {
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        
+        animation.toValue = value
+        animation.duration = duration
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.autoreverses = true
+        animation.repeatCount = 1.0
+        
+        add(animation, forKey: "pulsation")
+    }
+}
