@@ -1,5 +1,5 @@
 //
-//  GlobalConstants.swift
+//  Keys.swift
 //  SongGame
 //
 //  Created by Bruno Scheltzke on 19/03/18.
@@ -13,12 +13,9 @@ struct GlobalConstants {
     static let bassSound = "bassSound"
     static let hitHatSound = "hitHatSound"
     
-    static let snareImage = "snareImage"
-    static let snareImagePlayed = "snareImagePlayed"
-    static let bassImage = "bassImage"
-    static let bassImagePlayed = "bassImagePlayed"
-    static let hitHatImage = "hitHatImage"
-    static let hitHatImagePlayed = "hitHatImagePlayed"
+    static let snareImage = "snareDrum"
+    static let bassImage = "bassDrum"
+    static let hitHatImage = "hitHatDrum"
     
     static let kBipDurationSeconds: Float32 = 0.020
     static let kTempoChangeResponsivenessSeconds: Float32 = 0.250

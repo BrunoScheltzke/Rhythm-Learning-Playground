@@ -25,7 +25,7 @@ class SoundManager {
             let urlBass = URL.init(fileURLWithPath: Bundle.main.path(forResource: GlobalConstants.bassSound, ofType: "mp3")!)
             bassPlayer = try AVAudioPlayer(contentsOf: urlBass)
             bassPlayer.prepareToPlay()
-            
+
             let urlHitHat = URL.init(fileURLWithPath: Bundle.main.path(forResource: GlobalConstants.hitHatSound, ofType: "mp3")!)
             hitHatPlayer = try AVAudioPlayer(contentsOf: urlHitHat)
             hitHatPlayer.prepareToPlay()

@@ -4,7 +4,7 @@
  
  Abstract:
  Triangle Wave Generator
- */
+*/
 
 import Foundation
 import AVFoundation
@@ -44,17 +44,17 @@ class TriangleWaveGenerator : NSObject {
         
         let amp = mAmplitude
         
-        let phaseStep = mFreqHz / mSampleRate;
+		let phaseStep = mFreqHz / mSampleRate;
         
         if (isInterleaved) {
             var ptr = buffer.floatChannelData?[0]
             
             for frame in 0 ..< nFrames {
-                let phase = fmodf(Float(frame) * phaseStep, 1.0)
-                let value = (fabsf(2.0 - 4.0 * phase) - 1.0) * amp;
-                
+				let phase = fmodf(Float(frame) * phaseStep, 1.0)
+				let value = (fabsf(2.0 - 4.0 * phase) - 1.0) * amp;
+				
                 for _ in 0 ..< nChannels {
-                    ptr?.pointee = value;
+					ptr?.pointee = value;
                     ptr = ptr?.successor()
                 }
             }
@@ -63,11 +63,11 @@ class TriangleWaveGenerator : NSObject {
                 var ptr = buffer.floatChannelData?[Int(ch)]
                 
                 for frame in 0 ..< nFrames {
-                    let phase = fmodf(Float(frame) * phaseStep, 1.0)
-                    let value = (fabsf(2.0 - 4.0 * phase) - 1.0) * amp;
-                    
-                    ptr?.pointee = value
-                    
+					let phase = fmodf(Float(frame) * phaseStep, 1.0)
+					let value = (fabsf(2.0 - 4.0 * phase) - 1.0) * amp;
+					
+					ptr?.pointee = value
+					
                     ptr = ptr?.successor()
                 }
             }

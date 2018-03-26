@@ -78,7 +78,7 @@ public class Metronome : NSObject {
         // Create a serial dispatch queue for synchronizing callbacks.
         syncQueue = DispatchQueue(label: "Metronome")
         
-        self.setTempo(120)
+        self.setTempo(90)
     }
     
     deinit {
@@ -124,6 +124,7 @@ public class Metronome : NSObject {
             }
             
             // Schedule the delegate callback (metronomeTicking:bar:beat:) if necessary.
+            //tava let callbackBeat = beatNumber - 1 antes :\
             let callbackBeat = beatNumber - 1
             beatNumber += 1
             if delegate?.metronomeTicking != nil {
@@ -138,9 +139,9 @@ public class Metronome : NSObject {
                     if (self.isPlaying) {
                         let beat = callbackBeat % 4 + 1
                         //                        if beat == 0 {
-                        //                            beat = 4
+                        //                            beat = 1
                         //                        }
-                        self.delegate!.metronomeTicking!(self, bar: (callbackBeat / 4) + 1, beat: beat)
+                        self.delegate!.metronomeTicking!(self, bar: (callbackBeat / 4), beat: beat)
                     }
                 }
             }
@@ -203,3 +204,4 @@ public class Metronome : NSObject {
     }
     
 }
+
