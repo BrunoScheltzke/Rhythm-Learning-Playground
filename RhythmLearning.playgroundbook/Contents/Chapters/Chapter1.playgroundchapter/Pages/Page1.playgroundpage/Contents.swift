@@ -11,6 +11,10 @@ import PlaygroundSupport
 let vc = ViewController()
 var metronome = vc.metronome
 
+vc.finishAssessment = {
+    metronome.stop()
+}
+
 PlaygroundPage.current.liveView = vc
 
 //#-end-hidden-code

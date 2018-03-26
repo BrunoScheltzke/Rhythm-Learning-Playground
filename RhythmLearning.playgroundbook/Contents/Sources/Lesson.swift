@@ -19,10 +19,16 @@ public struct Lesson {
     
     public var isLoop: Bool = false
     
+    public var snareGoal: Int
+    public var hitHatGoal: Int
+    public var bassGoal: Int
     
-    public init(name: String, tablature: [String: [DrumPart]], isLoop: Bool) {
-        self.isLoop = isLoop
-        self.tablature = tablature
+    public init(name: String, tablature: [String: [DrumPart]], isLoop: Bool, snareGoal: Int, hitHatGoal: Int, bassGoal: Int) {
         self.name = name
+        self.tablature = tablature
+        self.isLoop = isLoop
+        self.bassGoal = bassGoal
+        self.hitHatGoal = hitHatGoal
+        self.snareGoal = snareGoal
     }
 }

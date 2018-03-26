@@ -13,6 +13,8 @@ public typealias BarBeat = (bar: Int32, beat: Int32)
 public class ViewController: UIViewController {
     public var metronome = Metronome()
     
+    public var finishAssessment: (() -> Void)!
+    
     public var snareView = DrumItem(drumPart: .snare)
     public var bassView = DrumItem(drumPart: .bass)
     public var hitHatView = DrumItem(drumPart: .hitHat)
@@ -28,13 +30,19 @@ public class ViewController: UIViewController {
     
     public let metronomeLabel = UILabel()
     
-    public var currentLesson: Lesson = Lesson(name: "First Lesson", tablature: ["11": [DrumPart.hitHat], "12": [DrumPart.hitHat], "13": [DrumPart.hitHat], "14": [DrumPart.hitHat]], isLoop: true)
+    public var currentLesson: Lesson = Lesson(name: "First Lesson", tablature: ["11": [DrumPart.hitHat], "12": [DrumPart.hitHat], "13": [DrumPart.hitHat], "14": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 0) {
+        didSet {
+            snareView.noteGoal = currentLesson.snareGoal
+            hitHatView.noteGoal = currentLesson.hitHatGoal
+            bassView.noteGoal = currentLesson.bassGoal
+        }
+    }
     
-    public var lesson2: Lesson = Lesson(name: "First Lesson", tablature: ["11": [DrumPart.hitHat], "12": [DrumPart.hitHat, DrumPart.snare], "13": [DrumPart.hitHat], "14": [DrumPart.hitHat, DrumPart.snare]], isLoop: true)
+    public var lesson2: Lesson = Lesson(name: "Second Lesson", tablature: ["11": [DrumPart.hitHat], "12": [DrumPart.hitHat, DrumPart.snare], "13": [DrumPart.hitHat], "14": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 0)
     
-    public var lesson3: Lesson = Lesson(name: "First Lesson", tablature: ["11": [DrumPart.hitHat, DrumPart.bass], "12": [DrumPart.hitHat], "13": [DrumPart.hitHat, DrumPart.bass], "14": [DrumPart.hitHat]], isLoop: true)
+    public var lesson3: Lesson = Lesson(name: "Third Lesson", tablature: ["11": [DrumPart.hitHat, DrumPart.bass], "12": [DrumPart.hitHat], "13": [DrumPart.hitHat, DrumPart.bass], "14": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 8)
     
-    public var lesson4: Lesson = Lesson(name: "First Lesson", tablature: ["11": [DrumPart.hitHat, DrumPart.bass], "12": [DrumPart.hitHat, DrumPart.snare], "13": [DrumPart.hitHat, DrumPart.bass], "14": [DrumPart.hitHat, DrumPart.snare]], isLoop: true)
+    public var lesson4: Lesson = Lesson(name: "Fourth Lesson", tablature: ["11": [DrumPart.hitHat, DrumPart.bass], "12": [DrumPart.hitHat, DrumPart.snare], "13": [DrumPart.hitHat, DrumPart.bass], "14": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8)
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,21 +169,25 @@ extension ViewController: DrumItemDelegate {
         case .snare:
             guard let nextBarBeat = nextSnareBarBeats.first else { return }
             if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
-                drumItem.increaseProgress(by: 0.2)
+                drumItem.increaseProgress()
                 nextSnareBarBeats.removeFirst()
             }
         case .bass:
             guard let nextBarBeat = nextBassBarBeats.first else { return }
             if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
-                drumItem.increaseProgress(by: 0.2)
+                drumItem.increaseProgress()
                 nextBassBarBeats.removeFirst()
             }
         case .hitHat:
             guard let nextBarBeat = nextHitHatBarBeats.first else { return }
             if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
-                drumItem.increaseProgress(by: 0.2)
+                drumItem.increaseProgress()
                 nextHitHatBarBeats.removeFirst()
             }
+        }
+        
+        if snareView.notesPlayed >= snareView.noteGoal && hitHatView.notesPlayed >= hitHatView.noteGoal && bassView.notesPlayed >= bassView.noteGoal {
+            finishAssessment()
         }
     }
 }

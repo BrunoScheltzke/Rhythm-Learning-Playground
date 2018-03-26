@@ -31,8 +31,12 @@ public typealias DrumCharacteristic = (image: UIImage, mainColor: UIColor, secon
 public class DrumItem: UIView {
     public var delegate: DrumItemDelegate!
     public var drumPart: DrumPart
-    public var currentProgress: Double = 0
     public var drumItemImage = UIImageView()
+    
+    public var currentProgress: Double = 0
+    public var noteGoal: Int = 0
+    public var notesPlayed: Int = 0
+    
     
     public let progressCircleRadius: CGFloat = 71.5
     
@@ -200,8 +204,9 @@ public class DrumItem: UIView {
         }
     }
     
-    //from 0 to 1
-    public func increaseProgress(by progress: Double) {
+    public func increaseProgress() {
+        let progress = 0.788/Double(noteGoal)
+        
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.fromValue = currentProgress
         basicAnimation.byValue = progress
@@ -212,6 +217,7 @@ public class DrumItem: UIView {
         shapeLayer.add(basicAnimation, forKey: "strokeEnd")
         
         currentProgress += progress
+        notesPlayed += 1
     }
     
     @objc public func didTapView() {
