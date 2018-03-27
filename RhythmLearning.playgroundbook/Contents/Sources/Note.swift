@@ -12,9 +12,15 @@ public class NoteView: UIView {
     public var yConstraint: NSLayoutConstraint!
     public var widthConstraint: NSLayoutConstraint!
     
+    public var barBeat: BarBeat
+    
     public var position = 0
     
-    public init(drumPart: DrumPart) {
+    public var wasHit: Bool = false
+    
+    public init(drumPart: DrumPart, barBeat: BarBeat) {
+        self.barBeat = barBeat
+        
         super.init(frame: CGRect.zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = drumPart.getCharacteristics().mainColor
@@ -24,7 +30,14 @@ public class NoteView: UIView {
         circled()
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        circled()
+    }
+    
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

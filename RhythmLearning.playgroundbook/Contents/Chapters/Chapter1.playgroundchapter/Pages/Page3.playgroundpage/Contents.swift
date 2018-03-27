@@ -13,6 +13,11 @@ vc.currentLesson = vc.lesson3
 
 var metronome = vc.metronome
 
+vc.finishAssessment = {
+    PlaygroundPage.current.assessmentStatus = .pass(message: "That's it! You're a pro! 🥇😎")
+    PlaygroundPage.current.finishExecution()
+}
+
 PlaygroundPage.current.liveView = vc
 
 //#-end-hidden-code

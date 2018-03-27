@@ -30,7 +30,7 @@ public class ViewController: UIViewController {
     
     public let metronomeLabel = UILabel()
     
-    public var currentLesson: Lesson = Lesson(name: "First Lesson", tablature: ["11": [DrumPart.hitHat], "12": [DrumPart.hitHat], "13": [DrumPart.hitHat], "14": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 0) {
+    public var currentLesson: Lesson = Lesson(name: "First Lesson", tablature: ["21": [DrumPart.hitHat], "22": [DrumPart.hitHat], "23": [DrumPart.hitHat], "24": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 0) {
         didSet {
             snareView.noteGoal = currentLesson.snareGoal
             hitHatView.noteGoal = currentLesson.hitHatGoal
@@ -38,11 +38,13 @@ public class ViewController: UIViewController {
         }
     }
     
-    public var lesson2: Lesson = Lesson(name: "Second Lesson", tablature: ["11": [DrumPart.hitHat], "12": [DrumPart.hitHat, DrumPart.snare], "13": [DrumPart.hitHat], "14": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 0)
+    public var lesson1: Lesson = Lesson(name: "First Lesson", tablature: ["21": [DrumPart.hitHat], "22": [DrumPart.hitHat], "23": [DrumPart.hitHat], "24": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 0)
     
-    public var lesson3: Lesson = Lesson(name: "Third Lesson", tablature: ["11": [DrumPart.hitHat, DrumPart.bass], "12": [DrumPart.hitHat], "13": [DrumPart.hitHat, DrumPart.bass], "14": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 8)
+    public var lesson2: Lesson = Lesson(name: "Second Lesson", tablature: ["21": [DrumPart.hitHat], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 0)
     
-    public var lesson4: Lesson = Lesson(name: "Fourth Lesson", tablature: ["11": [DrumPart.hitHat, DrumPart.bass], "12": [DrumPart.hitHat, DrumPart.snare], "13": [DrumPart.hitHat, DrumPart.bass], "14": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8)
+    public var lesson3: Lesson = Lesson(name: "Third Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 8)
+    
+    public var lesson4: Lesson = Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8)
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +89,7 @@ public class ViewController: UIViewController {
         
         metronome.delegate = self
         metronome.start()
-        tolerance = Double((60/metronome.tempoBPM)/3)
+        tolerance = Double((60/metronome.tempoBPM)/2)
     }
 }
 
@@ -98,26 +100,32 @@ extension ViewController: MetronomeDelegate {
         latsBeatTime = CFAbsoluteTimeGetCurrent()
         
         DispatchQueue.main.async {
+            self.snareView.updateNoteViews(withTolerance: self.tolerance)
+            self.hitHatView.updateNoteViews(withTolerance: self.tolerance)
+            self.bassView.updateNoteViews(withTolerance: self.tolerance)
+        }
+        
+        DispatchQueue.main.async {
             self.metronomeLabel.text = "\(bar)/\(beat)"
         }
         
-        if let oldSnareNote = nextSnareBarBeats.first {
-            if oldSnareNote < currentBarBeat {
-                nextSnareBarBeats.removeFirst()
-            }
-        }
-        
-        if let oldBassNote = nextBassBarBeats.first {
-            if oldBassNote < currentBarBeat {
-                nextBassBarBeats.removeFirst()
-            }
-        }
-        
-        if let oldHitHatNote = nextHitHatBarBeats.first {
-            if oldHitHatNote < currentBarBeat {
-                nextHitHatBarBeats.removeFirst()
-            }
-        }
+        //        if let oldSnareNote = nextSnareBarBeats.first {
+        //            if oldSnareNote < currentBarBeat {
+        //                nextSnareBarBeats.removeFirst()
+        //            }
+        //        }
+        //
+        //        if let oldBassNote = nextBassBarBeats.first {
+        //            if oldBassNote < currentBarBeat {
+        //                nextBassBarBeats.removeFirst()
+        //            }
+        //        }
+        //
+        //        if let oldHitHatNote = nextHitHatBarBeats.first {
+        //            if oldHitHatNote < currentBarBeat {
+        //                nextHitHatBarBeats.removeFirst()
+        //            }
+        //        }
         
         let barBeat = "\(bar + 1)\(beat)"
         
@@ -130,30 +138,22 @@ extension ViewController: MetronomeDelegate {
             
             switch drumPart {
             case .bass:
-                nextBassBarBeats.append((bar + 1, beat))
+                //nextBassBarBeats.append((bar + 1, beat))
                 DispatchQueue.main.async {
-                    self.bassView.createNote()
+                    self.bassView.createNote(barBeat: (bar + 1, beat))
                 }
             case .snare:
-                nextSnareBarBeats.append((bar + 1, beat))
+                //nextSnareBarBeats.append((bar + 1, beat))
                 DispatchQueue.main.async {
-                    self.snareView.createNote()
+                    self.snareView.createNote(barBeat: (bar + 1, beat))
                 }
             case .hitHat:
-                nextHitHatBarBeats.append((bar + 1, beat))
+                //nextHitHatBarBeats.append((bar + 1, beat))
                 DispatchQueue.main.async {
-                    self.hitHatView.createNote()
+                    self.hitHatView.createNote(barBeat: (bar + 1, beat))
                 }
             }
         })
-        
-        if currentBarBeat != (0, 0) {
-            DispatchQueue.main.async {
-                self.snareView.updateNoteViews()
-                self.hitHatView.updateNoteViews()
-                self.bassView.updateNoteViews()
-            }
-        }
     }
     
     public func barBeat(after barBeat: BarBeat) -> BarBeat {
@@ -163,31 +163,37 @@ extension ViewController: MetronomeDelegate {
 
 extension ViewController: DrumItemDelegate {
     public func didPlayDrumItem(_ drumItem: DrumItem) {
-        let timeSinceLastBeat = CFAbsoluteTimeGetCurrent() - latsBeatTime
         
-        switch drumItem.drumPart {
-        case .snare:
-            guard let nextBarBeat = nextSnareBarBeats.first else { return }
-            if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
-                drumItem.increaseProgress()
-                nextSnareBarBeats.removeFirst()
-            }
-        case .bass:
-            guard let nextBarBeat = nextBassBarBeats.first else { return }
-            if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
-                drumItem.increaseProgress()
-                nextBassBarBeats.removeFirst()
-            }
-        case .hitHat:
-            guard let nextBarBeat = nextHitHatBarBeats.first else { return }
-            if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
-                drumItem.increaseProgress()
-                nextHitHatBarBeats.removeFirst()
-            }
+        let timeSinceLastBeat = CFAbsoluteTimeGetCurrent() - latsBeatTime
+        //        switch drumItem.drumPart {
+        //        case .snare:
+        //            guard let nextBarBeat = nextSnareBarBeats.first else { return }
+        //            if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
+        //                drumItem.increaseProgress()
+        //                nextSnareBarBeats.removeFirst()
+        //            }
+        //        case .bass:
+        //            guard let nextBarBeat = nextBassBarBeats.first else { return }
+        //            if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
+        //                drumItem.increaseProgress()
+        //                nextBassBarBeats.removeFirst()
+        //            }
+        //        case .hitHat:
+        //            guard let nextBarBeat = nextHitHatBarBeats.first else { return }
+        //            if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
+        //                drumItem.increaseProgress()
+        //                nextHitHatBarBeats.removeFirst()
+        //            }
+        //        }
+        
+        guard let nextNote = drumItem.notes.first else { return }
+        if (nextNote.barBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextNote.barBeat) && timeSinceLastBeat >= tolerance {
+            drumItem.increaseProgress()
+            //nextSnareBarBeats.removeFirst()
         }
         
         if snareView.notesPlayed >= snareView.noteGoal && hitHatView.notesPlayed >= hitHatView.noteGoal && bassView.notesPlayed >= bassView.noteGoal {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
                 self.finishAssessment()
             })
         }
