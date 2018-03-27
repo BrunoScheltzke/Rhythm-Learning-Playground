@@ -180,14 +180,7 @@ public class DrumItem: UIView {
         cell.scaleRange = CGFloat(intensity)
         cell.scaleSpeed = CGFloat(0.1 * intensity)
         
-        switch drumPart {
-        case .bass:
-            cell.contents = #imageLiteral(resourceName: "bassDrum").cgImage
-        case .hitHat:
-            cell.contents = #imageLiteral(resourceName: "hitHatDrum").cgImage
-        case .snare:
-            cell.contents = #imageLiteral(resourceName: "snareDrum").cgImage
-        }
+        cell.contents = drumCharacteristics.image.cgImage
         
         return cell
     }
@@ -232,7 +225,6 @@ public class DrumItem: UIView {
         drumImageContainer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.18).isActive = true
         drumImageContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        //let bottomSpacing: CGFloat = (drumPart == .bass) ? -200 : -270
         let bottomSpacing: CGFloat = -200
         
         drumImageContainer.centerYAnchor.constraint(equalTo: self.bottomAnchor, constant: bottomSpacing).isActive = true
@@ -240,7 +232,6 @@ public class DrumItem: UIView {
         self.addSubview(notePositioningView)
         notePositioningView.translatesAutoresizingMaskIntoConstraints = false
         notePositioningView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        //let notePositionBottomSpacing: CGFloat = (drumPart == .bass) ? -55 : -5
         notePositioningView.bottomAnchor.constraint(equalTo: drumImageContainer.topAnchor).isActive = true
         notePositioningView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         notePositioningView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
@@ -249,7 +240,6 @@ public class DrumItem: UIView {
         notePositioningView.addSubview(notePositionsStackView)
         notePositionsStackView.translatesAutoresizingMaskIntoConstraints = false
         notePositionsStackView.topAnchor.constraint(equalTo: notePositioningView.topAnchor).isActive = true
-        //notePositionsStackView.bottomAnchor.constraint(equalTo: notePositioningView.bottomAnchor, constant: -trackLineWidth/2).isActive = true
         notePositionsStackView.bottomAnchor.constraint(equalTo: drumImageContainer.bottomAnchor, constant: -trackLineWidth*1.5).isActive = true
         notePositionsStackView.leadingAnchor.constraint(equalTo: notePositioningView.leadingAnchor).isActive = true
         notePositionsStackView.trailingAnchor.constraint(equalTo: notePositioningView.trailingAnchor).isActive = true
@@ -277,14 +267,7 @@ public class DrumItem: UIView {
         drumItemImage = UIImageView()
         drumItemImage.translatesAutoresizingMaskIntoConstraints = false
         
-        switch drumPart {
-        case .bass:
-            drumItemImage.image = #imageLiteral(resourceName: "bassDrum")
-        case .hitHat:
-            drumItemImage.image = #imageLiteral(resourceName: "hitHatDrum")
-        case .snare:
-            drumItemImage.image = #imageLiteral(resourceName: "snareDrum")
-        }
+        drumItemImage.image = drumCharacteristics.image
         
         drumImageContainer.addSubview(drumItemImage)
         drumItemImage.centerXAnchor.constraint(equalTo: drumImageContainer.centerXAnchor).isActive = true

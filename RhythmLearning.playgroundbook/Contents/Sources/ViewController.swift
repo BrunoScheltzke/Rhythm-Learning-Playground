@@ -73,6 +73,7 @@ public class ViewController: UIViewController {
         drumContainer.addArrangedSubview(bassView)
         drumContainer.addArrangedSubview(hitHatView)
         
+        //Used on ui testing project
         let instructionsView = UIView()
         instructionsView.addSubview(metronomeLabel)
         metronomeLabel.font = UIFont.boldSystemFont(ofSize: 200)
@@ -109,24 +110,6 @@ extension ViewController: MetronomeDelegate {
             self.metronomeLabel.text = "\(bar)/\(beat)"
         }
         
-        //        if let oldSnareNote = nextSnareBarBeats.first {
-        //            if oldSnareNote < currentBarBeat {
-        //                nextSnareBarBeats.removeFirst()
-        //            }
-        //        }
-        //
-        //        if let oldBassNote = nextBassBarBeats.first {
-        //            if oldBassNote < currentBarBeat {
-        //                nextBassBarBeats.removeFirst()
-        //            }
-        //        }
-        //
-        //        if let oldHitHatNote = nextHitHatBarBeats.first {
-        //            if oldHitHatNote < currentBarBeat {
-        //                nextHitHatBarBeats.removeFirst()
-        //            }
-        //        }
-        
         let barBeat = "\(bar + 1)\(beat)"
         
         let drumPartsToBePlayed = currentLesson.tablature[barBeat]
@@ -138,17 +121,14 @@ extension ViewController: MetronomeDelegate {
             
             switch drumPart {
             case .bass:
-                //nextBassBarBeats.append((bar + 1, beat))
                 DispatchQueue.main.async {
                     self.bassView.createNote(barBeat: (bar + 1, beat))
                 }
             case .snare:
-                //nextSnareBarBeats.append((bar + 1, beat))
                 DispatchQueue.main.async {
                     self.snareView.createNote(barBeat: (bar + 1, beat))
                 }
             case .hitHat:
-                //nextHitHatBarBeats.append((bar + 1, beat))
                 DispatchQueue.main.async {
                     self.hitHatView.createNote(barBeat: (bar + 1, beat))
                 }
@@ -165,31 +145,10 @@ extension ViewController: DrumItemDelegate {
     public func didPlayDrumItem(_ drumItem: DrumItem) {
         
         let timeSinceLastBeat = CFAbsoluteTimeGetCurrent() - latsBeatTime
-        //        switch drumItem.drumPart {
-        //        case .snare:
-        //            guard let nextBarBeat = nextSnareBarBeats.first else { return }
-        //            if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
-        //                drumItem.increaseProgress()
-        //                nextSnareBarBeats.removeFirst()
-        //            }
-        //        case .bass:
-        //            guard let nextBarBeat = nextBassBarBeats.first else { return }
-        //            if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
-        //                drumItem.increaseProgress()
-        //                nextBassBarBeats.removeFirst()
-        //            }
-        //        case .hitHat:
-        //            guard let nextBarBeat = nextHitHatBarBeats.first else { return }
-        //            if (nextBarBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextBarBeat) && timeSinceLastBeat >= tolerance {
-        //                drumItem.increaseProgress()
-        //                nextHitHatBarBeats.removeFirst()
-        //            }
-        //        }
         
         guard let nextNote = drumItem.notes.first else { return }
         if (nextNote.barBeat == currentBarBeat && timeSinceLastBeat <= tolerance) || (barBeat(after: currentBarBeat) == nextNote.barBeat) && timeSinceLastBeat >= tolerance {
             drumItem.increaseProgress()
-            //nextSnareBarBeats.removeFirst()
         }
         
         if snareView.notesPlayed >= snareView.noteGoal && hitHatView.notesPlayed >= hitHatView.noteGoal && bassView.notesPlayed >= bassView.noteGoal {
