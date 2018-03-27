@@ -78,9 +78,14 @@ public class DrumItem: UIView {
         gradientLayer.frame = bounds
         
         let circularPath = UIBezierPath(arcCenter: .zero, radius: drumImageContainer.frame.width/2, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        
         trackLayer.path = circularPath.cgPath
         shapeLayer.path = circularPath.cgPath
         pulsatingLayer.path = circularPath.cgPath
+        
+        trackLayer.position = drumImageContainer.center
+        shapeLayer.position = drumImageContainer.center
+        pulsatingLayer.position = drumImageContainer.center
     }
     
     public override func draw(_ rect: CGRect) {
