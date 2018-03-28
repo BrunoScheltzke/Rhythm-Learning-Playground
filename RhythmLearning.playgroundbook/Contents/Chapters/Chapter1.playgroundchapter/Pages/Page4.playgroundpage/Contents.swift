@@ -1,5 +1,5 @@
 /*:
- ## Time for the gig!
+ ## Time for the gig 🥁
  
  Now that you are a pro😎, we are going to setup the song you just learned: **Billie Jean by Michael Jackson** so you can play it along.
  
@@ -26,4 +26,3 @@ vc.finishAssessment = {
 PlaygroundPage.current.liveView = vc
 
 //#-end-hidden-code
-metronome.setTempo(/*#-editable-code Decrease or increase the speed*/117/*#-end-editable-code*/)
