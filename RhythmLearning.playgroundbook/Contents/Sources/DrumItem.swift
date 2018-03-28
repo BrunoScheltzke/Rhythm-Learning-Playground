@@ -339,8 +339,33 @@ public class DrumItem: UIView {
         notes.forEach { (note) in
             let increase = middle2View.center.y - middle1View.center.y
             
-            if note.position == 4 {
+            //            if note.position == 3 {
+            //                //animate dumping as usu COMPLETION starts falling with different animation for easy hit COMPLETION check if didnot
+            //            }
+            
+            switch note.position {
+            case 1:
                 UIView.animate(withDuration: tolerance, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
+                    note.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(0.7)
+                    note.center.y += increase
+                    note.yConstraint.constant += increase
+                }, completion: nil)
+            case 2:
+                UIView.animate(withDuration: tolerance, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
+                    note.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(0.4)
+                    note.center.y += increase
+                    note.yConstraint.constant += increase
+                }, completion: nil)
+            case 3:
+                UIView.animate(withDuration: tolerance, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
+                    note.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(0.1)
+                    note.center.y += increase
+                    note.yConstraint.constant += increase
+                }, completion: nil)
+            case 4:
+                note.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(0)
+                UIView.animate(withDuration: tolerance, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
+                    //note.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(0)
                     note.center.y += increase
                     note.yConstraint.constant += increase + self.trackLineWidth/1.5
                 }, completion: { _ in
@@ -359,13 +384,39 @@ public class DrumItem: UIView {
                         })
                     }
                 })
-            } else if note.position <= 4 {
-                UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
-                    note.center.y += increase
-                    note.yConstraint.constant += increase
-                }, completion: nil)
+            default:
+                break
             }
+            
             note.position += 1
+            
+            //            if note.position == 4 {
+            //                UIView.animate(withDuration: tolerance, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
+            //                    note.center.y += increase
+            //                    note.yConstraint.constant += increase + self.trackLineWidth/1.5
+            //                }, completion: { _ in
+            //
+            //                    if !note.wasHit {
+            //                        self.notes.removeFirst()
+            //
+            //                        UIView.animate(withDuration: 1, animations: {
+            //                            note.center.y = self.frame.height + self.noteSize
+            //                            note.yConstraint.constant = self.frame.height + self.noteSize
+            //
+            //                            note.layer.pulsate(toValue: 0, withDuration: 2)
+            //
+            //                        }, completion: { (_) in
+            //                            note.removeFromSuperview()
+            //                        })
+            //                    }
+            //                })
+            //            } else if note.position <= 3 {
+            //                UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
+            //                    note.center.y += increase
+            //                    note.yConstraint.constant += increase
+            //                }, completion: nil)
+            //            }
+            //            note.position += 1
         }
     }
     
@@ -373,13 +424,21 @@ public class DrumItem: UIView {
         startEmission()
         pulsatingLayer.pulsate()
         notes.first?.wasHit = true
-        notes.first?.layer.pulsate(toValue: 1.4, withDuration: 0.4)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            self.notes.first?.removeFromSuperview()
-            self.notes.removeFirst()
+        DispatchQueue.main.async {
+            self.notes.first?.center.y = self.bottom.center.y + self.bottom.frame.height + self.trackLineWidth/1.5
+            self.notes.first?.yConstraint.constant = self.bottom.center.y + self.bottom.frame.height + self.trackLineWidth/1.5
+            
+            self.notes.first?.layer.pulsate(toValue: 1.4, withDuration: 0.4)
+            self.notes.first?.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(1)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.notes.first?.removeFromSuperview()
+                self.notes.removeFirst()
+            }
         }
     }
+    
     
     public func increaseProgress() {
         hitNote()
