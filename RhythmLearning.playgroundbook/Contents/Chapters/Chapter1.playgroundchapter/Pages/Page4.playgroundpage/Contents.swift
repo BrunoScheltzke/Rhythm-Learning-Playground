@@ -3,7 +3,7 @@
  
  Now that you are a pro😎, we are going to setup the song you just learned: **Billie Jean by Michael Jackson** so you can play it along.
  
- **Have fun on your first beat!!**
+ **Have fun on playing your first song!!**
  */
 
 //#-hidden-code

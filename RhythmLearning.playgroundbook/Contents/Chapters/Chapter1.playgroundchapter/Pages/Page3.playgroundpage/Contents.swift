@@ -1,12 +1,12 @@
 /*:
  ## Time for the real challenge!!
  
- Play the **bass drum (green section)** in the middle at counts **1** and **3** along with the **hit hat**.
+ Play the [bass](glossary://bass) (green section in the middle) at beats **1** and **3** along with the [hit-hat](glossary://hit-hat).
  \
  All together with what you learned in the previous exercises.
  
  - Important:
- Putting all the instruments together may be tough, so you can slow the tempo if you need.
+ Putting all the instruments together may be tough, so you can slow the [tempo](glossary://tempo) in the function [metronome](glossary://metronome).setTempo() if you need.
  */
 
 //#-hidden-code

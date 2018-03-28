@@ -1,13 +1,13 @@
 /*:
  ## Can you count to four? You can play the drums!!😎
  
- - The first thing to learn is to count in the correct tempo.
+ - The first thing to learn is to count in the correct [tempo](glossary://tempo).
  
- Once you hit the **Run my code** button, you will hear a tic sound to represent the tempo.
+ Once you hit the **Run my code** button, you will hear a click sound to represent the [tempo](glossary://tempo).
  \
  This indicates how fast you are going to count to 4.
  \
- After a while, a couple of blue notes will fall from the sky on each tic sound.
+ After a while, a couple of blue notes will fall from the sky on each click sound.
  \
  Try to hit the blue section whenever the note reaches the blue instrument.
  */

@@ -2,18 +2,18 @@
  ## Here’s what you’ve done until now:
  
  - You learned a part of a beat of a very famous **Michael Jackson song: Billie Jean!**
- - You learned that the **hit hat (the blue instrument)** is following the tempo at count 1, 2, 3 and 4. And then it is repeated.
+ - You learned that the [hit-hat](glossary://hit-hat) is following the tempo at beats 1, 2, 3 and 4. And then it is repeated.
  
  # Up Next:
  
- Time to add **snare drum** notes to the **hit hat** notes we just played.
+ Time to add [snare](glossary://snare) notes to the [hit-hat](glossary://hit-hat) notes we just played.
  \
- The snare drum is represented by the **yellow section** in the very left.
+ The [snare](glossary://snare) is represented by the **yellow section** in the very left.
  \
- So, along with the hit hat, play the yellow section at count 2 and count 4.
+ So, along with the [hit-hat](glossary://hit-hat), play the yellow section at count 2 and count 4.
  
  - Important:
- It really helps if you count from 1 to 4 out loud along with the tic sound.
+ It really helps if you count from 1 to 4 out loud along with the click sound.
  */
 
 //#-hidden-code

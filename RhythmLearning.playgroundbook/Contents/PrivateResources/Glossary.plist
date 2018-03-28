@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Terms</key>
+	<dict>
+		<key>snare</key>
+		<dict>
+			<key>Definition</key>
+			<string>Percussion instrument. Usually played with the left hand. Represented in this book by the color yellow. Positioned at the very left of the view.</string>
+		</dict>
+		<key>bass</key>
+		<dict>
+			<key>Definition</key>
+			<string>(Kick Drum) Percussion instrument. Played with the foot. Represented in this book by the color green. Positioned in the middle of the view.</string>
+		</dict>
+		<key>hit-hat</key>
+		<dict>
+			<key>Definition</key>
+			<string>Percussion instrument. Usually played with the right hand and left foot. Composed by two cymbals. Represented in this book by the color blue and positioned at the very right of the view.</string>
+		</dict>
+		<key>metronome</key>
+		<dict>
+			<key>Definition</key>
+			<string>Device that produces a sound at a regular interval usually in beats per minute (BPM)</string>
+		</dict>
+		<key>tempo</key>
+		<dict>
+			<key>Definition</key>
+			<string>Represents the speed of a song/piece. It is usually measured in beats per minute (BPM). So a tempo of 105BPM indicates 105 beats in 60 seconds.</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
