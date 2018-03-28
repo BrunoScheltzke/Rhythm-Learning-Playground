@@ -28,6 +28,8 @@ public class ViewController: UIViewController {
     public var tolerance: Double = 0
     public var latsBeatTime: CFAbsoluteTime = 0
     
+    public var freePlayMode: Bool = false
+    
     public let metronomeLabel = UILabel()
     
     public var currentLesson: Lesson = Lesson(name: "First Lesson", tablature: ["21": [DrumPart.hitHat], "22": [DrumPart.hitHat], "23": [DrumPart.hitHat], "24": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 0) {
@@ -154,10 +156,8 @@ extension ViewController: DrumItemDelegate {
             drumItem.increaseProgress()
         }
         
-        if snareView.notesPlayed >= snareView.noteGoal && hitHatView.notesPlayed >= hitHatView.noteGoal && bassView.notesPlayed >= bassView.noteGoal {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
-                self.finishAssessment()
-            })
+        if snareView.notesPlayed >= snareView.noteGoal && hitHatView.notesPlayed >= hitHatView.noteGoal && bassView.notesPlayed >= bassView.noteGoal && !freePlayMode {
+            finishAssessment()
         }
     }
 }

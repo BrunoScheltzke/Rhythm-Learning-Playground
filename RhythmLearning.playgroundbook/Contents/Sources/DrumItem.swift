@@ -392,18 +392,20 @@ public class DrumItem: UIView {
         pulsatingLayer.pulsate()
         notes.first?.wasHit = true
         
-        DispatchQueue.main.async {
-            self.notes.first?.center.y = self.bottom.center.y + self.bottom.frame.height + self.trackLineWidth/1.5
-            self.notes.first?.yConstraint.constant = self.bottom.center.y + self.bottom.frame.height + self.trackLineWidth/1.5
-            
-            self.notes.first?.layer.pulsate(toValue: 1.4, withDuration: 0.4)
-            self.notes.first?.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(1)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                self.notes.first?.removeFromSuperview()
-                self.notes.removeFirst()
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.notes.first?.removeFromSuperview()
+            self.notes.removeFirst()
         }
+        
+        
+//        DispatchQueue.main.async {
+//            self.notes.first?.center.y = self.bottom.center.y + self.bottom.frame.height + self.trackLineWidth/1.5
+//            self.notes.first?.yConstraint.constant = self.bottom.center.y + self.bottom.frame.height + self.trackLineWidth/1.5
+//
+//            self.notes.first?.layer.pulsate(toValue: 1.4, withDuration: 0.4)
+//            self.notes.first?.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(1)
+        
+//        }
     }
     
     
