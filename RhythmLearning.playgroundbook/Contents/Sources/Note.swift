@@ -24,6 +24,8 @@ public class NoteView: UIView {
         super.init(frame: CGRect.zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = drumPart.getCharacteristics().mainColor
+        
+        self.layer.zPosition = 2.0
     }
     
     public override func draw(_ rect: CGRect) {

@@ -78,15 +78,18 @@ public class ViewController: UIViewController {
         
         //Used on ui testing project
         let instructionsView = UIView()
-        instructionsView.addSubview(metronomeLabel)
-        metronomeLabel.font = UIFont.boldSystemFont(ofSize: 200)
+        
+        view.addSubview(metronomeLabel)
+        metronomeLabel.font = UIFont.boldSystemFont(ofSize: 450)
         metronomeLabel.textAlignment = NSTextAlignment.center
-        metronomeLabel.text = "Here we go!"
+        metronomeLabel.text = ""
+        metronomeLabel.textColor = UIColor.white.withAlphaComponent(0.2)
         metronomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        metronomeLabel.centerXAnchor.constraint(equalTo: instructionsView.centerXAnchor).isActive = true
-        metronomeLabel.centerYAnchor.constraint(equalTo: instructionsView.centerYAnchor).isActive = true
-        metronomeLabel.widthAnchor.constraint(equalTo: instructionsView.widthAnchor).isActive = true
-        metronomeLabel.heightAnchor.constraint(equalTo: instructionsView.heightAnchor).isActive = true
+        metronomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        metronomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 65).isActive = true
+        metronomeLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        metronomeLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
+        metronomeLabel.layer.zPosition = 1.0
         
         //playgroundView.addArrangedSubview(instructionsView)
         playgroundView.addArrangedSubview(drumContainer)
@@ -111,7 +114,7 @@ extension ViewController: MetronomeDelegate {
         }
         
         DispatchQueue.main.async {
-            self.metronomeLabel.text = "\(bar)/\(beat)"
+            self.metronomeLabel.text = "\(beat)"
         }
         
         let barBeat = "\(bar + 1)\(beat)"
