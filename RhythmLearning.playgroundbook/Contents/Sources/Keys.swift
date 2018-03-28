@@ -12,6 +12,7 @@ struct GlobalConstants {
     static let snareSound = "snareSound"
     static let bassSound = "bassSound"
     static let hitHatSound = "hitHatSound"
+    static let billieJeanSong = "billieJeanSong"
     
     static let snareImage = "snareDrum"
     static let bassImage = "bassDrum"
@@ -20,3 +21,4 @@ struct GlobalConstants {
     static let kBipDurationSeconds: Float32 = 0.020
     static let kTempoChangeResponsivenessSeconds: Float32 = 0.250
 }
+

@@ -19,7 +19,6 @@ metronome.setTempo(105)
 
 vc.finishAssessment = {
     PlaygroundPage.current.assessmentStatus = .pass(message: "That’s great! You are already used to the tempo. 😎")
-    PlaygroundPage.current.assessmentStatus = .fail(hints: ["Tu errou feio mlk", "asdifuhsaiodf"], solution: "Nasce de novo")
     PlaygroundPage.current.finishExecution()
 }
 

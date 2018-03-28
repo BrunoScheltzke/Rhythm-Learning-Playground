@@ -23,12 +23,22 @@ public struct Lesson {
     public var hitHatGoal: Int
     public var bassGoal: Int
     
-    public init(name: String, tablature: [String: [DrumPart]], isLoop: Bool, snareGoal: Int, hitHatGoal: Int, bassGoal: Int) {
+    public var song: Song?
+    
+    public init(name: String, tablature: [String: [DrumPart]], isLoop: Bool, snareGoal: Int, hitHatGoal: Int, bassGoal: Int, song: Song? = nil) {
         self.name = name
         self.tablature = tablature
         self.isLoop = isLoop
         self.bassGoal = bassGoal
         self.hitHatGoal = hitHatGoal
         self.snareGoal = snareGoal
+        self.song = song
+    }
+    
+    public func playSong() {
+        guard let song = self.song else { return }
+        
+        SoundManager.shared.play(song: song)
     }
 }
+

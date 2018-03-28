@@ -42,9 +42,11 @@ public class ViewController: UIViewController {
     
     public var lesson2: Lesson = Lesson(name: "Second Lesson", tablature: ["21": [DrumPart.hitHat], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 0)
     
-    public var lesson3: Lesson = Lesson(name: "Third Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 8)
+//    public var lesson3: Lesson = Lesson(name: "Third Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 8)
     
-    public var lesson4: Lesson = Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8)
+    public var lesson3: Lesson = Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8)
+    
+    public var lesson4: Lesson = Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8, song: Song.billieJean)
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +92,7 @@ public class ViewController: UIViewController {
         
         metronome.delegate = self
         metronome.start()
+        currentLesson.playSong()
         tolerance = Double((60/metronome.tempoBPM)/2)
     }
 }

@@ -16,7 +16,7 @@ let vc = ViewController()
 vc.currentLesson = vc.lesson4
 
 var metronome = vc.metronome
-metronome.setTempo(113)
+metronome.setTempo(117)
 
 //playmichael jackson song
 

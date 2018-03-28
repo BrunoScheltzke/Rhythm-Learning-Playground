@@ -338,11 +338,7 @@ public class DrumItem: UIView {
     public func updateNoteViews(withTolerance tolerance: Double) {
         notes.forEach { (note) in
             let increase = middle2View.center.y - middle1View.center.y
-            
-            //            if note.position == 3 {
-            //                //animate dumping as usu COMPLETION starts falling with different animation for easy hit COMPLETION check if didnot
-            //            }
-            
+        
             switch note.position {
             case 1:
                 UIView.animate(withDuration: tolerance, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
@@ -365,7 +361,6 @@ public class DrumItem: UIView {
             case 4:
                 note.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(0)
                 UIView.animate(withDuration: tolerance, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
-                    //note.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(0)
                     note.center.y += increase
                     note.yConstraint.constant += increase + self.trackLineWidth/1.5
                 }, completion: { _ in
@@ -389,34 +384,6 @@ public class DrumItem: UIView {
             }
             
             note.position += 1
-            
-            //            if note.position == 4 {
-            //                UIView.animate(withDuration: tolerance, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
-            //                    note.center.y += increase
-            //                    note.yConstraint.constant += increase + self.trackLineWidth/1.5
-            //                }, completion: { _ in
-            //
-            //                    if !note.wasHit {
-            //                        self.notes.removeFirst()
-            //
-            //                        UIView.animate(withDuration: 1, animations: {
-            //                            note.center.y = self.frame.height + self.noteSize
-            //                            note.yConstraint.constant = self.frame.height + self.noteSize
-            //
-            //                            note.layer.pulsate(toValue: 0, withDuration: 2)
-            //
-            //                        }, completion: { (_) in
-            //                            note.removeFromSuperview()
-            //                        })
-            //                    }
-            //                })
-            //            } else if note.position <= 3 {
-            //                UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
-            //                    note.center.y += increase
-            //                    note.yConstraint.constant += increase
-            //                }, completion: nil)
-            //            }
-            //            note.position += 1
         }
     }
     
