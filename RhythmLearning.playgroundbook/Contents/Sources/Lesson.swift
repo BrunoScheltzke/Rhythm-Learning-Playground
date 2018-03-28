@@ -40,5 +40,20 @@ public struct Lesson {
         
         SoundManager.shared.play(song: song)
     }
+    
+    public static func lesson1() -> Lesson {
+        return Lesson(name: "First Lesson", tablature: ["21": [DrumPart.hitHat], "22": [DrumPart.hitHat], "23": [DrumPart.hitHat], "24": [DrumPart.hitHat]], isLoop: true, snareGoal: 0, hitHatGoal: 16, bassGoal: 0)
+    }
+    
+    public static func lesson2() -> Lesson {
+        return Lesson(name: "Second Lesson", tablature: ["21": [DrumPart.hitHat], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 0)
+    }
+    
+    public static func lesson3() -> Lesson {
+        return Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8)
+    }
+    
+    public static func lesson4() -> Lesson {
+        return Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8, song: Song.billieJean)
+    }
 }
-

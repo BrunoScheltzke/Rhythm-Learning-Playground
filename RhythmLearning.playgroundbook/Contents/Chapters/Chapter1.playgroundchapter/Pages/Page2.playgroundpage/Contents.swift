@@ -20,9 +20,7 @@
 import UIKit
 import PlaygroundSupport
 
-let vc = ViewController()
-
-vc.currentLesson = vc.lesson2
+let vc = ViewController(lesson: Lesson.lesson2())
 
 var metronome = vc.metronome
 
