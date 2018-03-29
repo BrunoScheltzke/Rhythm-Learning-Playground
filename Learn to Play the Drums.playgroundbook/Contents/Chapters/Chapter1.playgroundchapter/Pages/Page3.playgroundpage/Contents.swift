@@ -13,7 +13,7 @@
 import UIKit
 import PlaygroundSupport
 
-let vc = ViewController(lesson: Lesson.lesson3())
+let vc = DrumSetViewController(lesson: Lesson.lesson3())
 
 var metronome = vc.metronome
 

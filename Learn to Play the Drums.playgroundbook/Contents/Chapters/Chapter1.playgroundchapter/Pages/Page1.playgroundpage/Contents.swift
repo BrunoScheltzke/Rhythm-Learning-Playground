@@ -16,7 +16,7 @@
 import UIKit
 import PlaygroundSupport
 
-let vc = ViewController(lesson: Lesson.lesson1())
+let vc = DrumSetViewController(lesson: Lesson.lesson1())
 var metronome = vc.metronome
 
 PlaygroundPage.current.assessmentStatus = .fail(hints: ["If it's too fast you can slow down the tempo by changing the value in the metronome.setTempo() function. The current tempo was set to 105"], solution: nil)

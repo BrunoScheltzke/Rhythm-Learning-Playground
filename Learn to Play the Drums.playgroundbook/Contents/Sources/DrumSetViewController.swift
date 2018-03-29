@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DrumSetViewController.swift
 //  RhythmUI
 //
 //  Created by Bruno Scheltzke on 22/03/18.
@@ -10,7 +10,7 @@ import UIKit
 
 public typealias BarBeat = (bar: Int32, beat: Int32)
 
-public class ViewController: UIViewController {
+public class DrumSetViewController: UIViewController {
     public var metronome = Metronome()
     
     public var finishAssessment: (() -> Void)!
@@ -90,7 +90,7 @@ public class ViewController: UIViewController {
     }
 }
 
-extension ViewController: MetronomeDelegate {
+extension DrumSetViewController: MetronomeDelegate {
     public func metronomeTicking(_ metronome: Metronome, bar: Int32, beat: Int32) {
         currentBarBeat = (bar, beat)
         
@@ -137,7 +137,7 @@ extension ViewController: MetronomeDelegate {
     }
 }
 
-extension ViewController: DrumItemDelegate {
+extension DrumSetViewController: DrumItemDelegate {
     public func didPlayDrumItem(_ drumItem: DrumItem) {
         
         let timeSinceLastBeat = CFAbsoluteTimeGetCurrent() - latsBeatTime
