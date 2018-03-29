@@ -13,6 +13,7 @@ struct GlobalConstants {
     static let bassSound = "bassSound"
     static let hitHatSound = "hitHatSound"
     static let billieJeanSong = "billieJeanSong"
+    static let song1 = "song1"
     
     static let snareImage = "snareDrum"
     static let bassImage = "bassDrum"

@@ -54,6 +54,6 @@ public struct Lesson {
     }
     
     public static func lesson4() -> Lesson {
-        return Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8, song: Song.billieJean)
+        return Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8, song: Song.song1)
     }
 }

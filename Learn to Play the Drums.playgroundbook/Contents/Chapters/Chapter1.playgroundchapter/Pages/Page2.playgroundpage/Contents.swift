@@ -1,7 +1,7 @@
 /*:
  ## Here’s what you’ve done until now:
  
- - You learned a part of a beat of a very famous **Michael Jackson song: Billie Jean!**
+ - You learned a part of a beat of tons of famous songs like **Highway to Hell - AC/DC, Billie Jean - Michael Jackson**
  - You learned that the [hit-hat](glossary://hit-hat) is following the tempo at beats 1, 2, 3 and 4. And then it is repeated.
  
  # Up Next:
