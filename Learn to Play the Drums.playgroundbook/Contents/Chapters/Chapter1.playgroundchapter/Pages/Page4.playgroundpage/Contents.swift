@@ -8,7 +8,8 @@
  - Highway to Hell - AC/DC
  - Welcome to the jungle - Guns N' Roses
  - Billie Jean - Michael Jackson
- - Green Day - Basket Case
+ - Basket Case - Green Day
+ - Holiday - Green Day
  
  
  **Have fun on playing your first song!!**
