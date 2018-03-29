@@ -22,7 +22,7 @@
 		<key>metronome</key>
 		<dict>
 			<key>Definition</key>
-			<string>Device that produces a sound at a regular interval usually in beats per minute (BPM)</string>
+			<string>Device that produces a sound at a regular interval usually in beats per minute (BPM) to set the tempo.</string>
 		</dict>
 		<key>tempo</key>
 		<dict>
