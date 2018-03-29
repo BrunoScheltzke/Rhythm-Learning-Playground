@@ -21,7 +21,7 @@ var metronome = vc.metronome
 
 metronome.setTempo(105)
 
-PlaygroundPage.current.assessmentStatus = .fail(hints: ["If it's too fast you can slow down the tempo by changing the value in the metronome.setTempo() function. The current tempo is 105"], solution: nil)
+PlaygroundPage.current.assessmentStatus = .fail(hints: ["If it's too fast you can slow down the tempo by changing the value in the metronome.setTempo() function. The current tempo was set to 105"], solution: nil)
 
 vc.finishAssessment = {
     PlaygroundPage.current.assessmentStatus = .pass(message: "That’s great! You are already used to the tempo😎 You can move to the next exercise or you can practice more if you want.")

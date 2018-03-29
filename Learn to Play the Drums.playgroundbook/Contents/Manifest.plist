@@ -7,9 +7,9 @@
 	<key>ContentVersion</key>
 	<string>1.0</string>
 	<key>Name</key>
-	<string>Rhythm Learning</string>
+	<string>Learn to Play the Drums</string>
 	<key>ContentIdentifier</key>
-	<string>com.scheltzke.RhythmLearning</string>
+	<string>com.scheltzke.LearntoPlaytheDrums</string>
 	<key>DeploymentTarget</key>
 	<string>ios10.0</string>
 	<key>Chapters</key>
