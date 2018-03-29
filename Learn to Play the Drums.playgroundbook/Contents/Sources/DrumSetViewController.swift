@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import PlaygroundSupport
 
 public typealias BarBeat = (bar: Int32, beat: Int32)
 
-public class DrumSetViewController: UIViewController {
+public class DrumSetViewController: UIViewController, PlaygroundLiveViewSafeAreaContainer {
     public var metronome = Metronome()
     
     public var finishAssessment: (() -> Void)!
@@ -22,6 +23,10 @@ public class DrumSetViewController: UIViewController {
     var snareView = DrumItem(drumPart: .snare)
     var bassView = DrumItem(drumPart: .bass)
     var hitHatView = DrumItem(drumPart: .hitHat)
+    
+    let snareSection = DrumSectionView(drumPart: .snare)
+    let bassSection = DrumSectionView(drumPart: .bass)
+    let hitHatSection = DrumSectionView(drumPart: .hitHat)
     
     var currentBarBeat: BarBeat = (0,0)
     var latsBeatTime: CFAbsoluteTime = 0
@@ -57,7 +62,41 @@ public class DrumSetViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.isOpaque = false
         view.backgroundColor = .white
+        
+        metronome.start()
+        currentLesson.playSong()
+        
+        setup()
+    }
+    
+    func setup() {
+        let drumSectionsStackView = UIStackView()
+        drumSectionsStackView.distribution = .fillEqually
+        
+        view.addSubview(drumSectionsStackView)
+        
+        drumSectionsStackView.translatesAutoresizingMaskIntoConstraints = false
+        drumSectionsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        drumSectionsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        drumSectionsStackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        drumSectionsStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        drumSectionsStackView.addArrangedSubview(snareSection)
+        drumSectionsStackView.addArrangedSubview(bassSection)
+        drumSectionsStackView.addArrangedSubview(hitHatSection)
+        
+        view.addSubview(metronomeLabel)
+        metronomeLabel.font = UIFont.boldSystemFont(ofSize: 420)
+        metronomeLabel.textAlignment = NSTextAlignment.center
+        metronomeLabel.text = ""
+        metronomeLabel.textColor = UIColor.white.withAlphaComponent(0.2)
+        metronomeLabel.translatesAutoresizingMaskIntoConstraints = false
+        metronomeLabel.centerXAnchor.constraint(equalTo: liveViewSafeAreaGuide.centerXAnchor).isActive = true
+        metronomeLabel.topAnchor.constraint(equalTo: liveViewSafeAreaGuide.topAnchor, constant: 65).isActive = true
+        metronomeLabel.widthAnchor.constraint(equalTo: liveViewSafeAreaGuide.widthAnchor).isActive = true
+        metronomeLabel.heightAnchor.constraint(equalTo: liveViewSafeAreaGuide.heightAnchor, multiplier: 0.5).isActive = true
         
         let drumContainer = UIStackView()
         drumContainer.distribution = .fillEqually
@@ -65,28 +104,14 @@ public class DrumSetViewController: UIViewController {
         view.addSubview(drumContainer)
         
         drumContainer.translatesAutoresizingMaskIntoConstraints = false
-        drumContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        drumContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        drumContainer.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        drumContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        drumContainer.leadingAnchor.constraint(equalTo: liveViewSafeAreaGuide.leadingAnchor).isActive = true
+        drumContainer.trailingAnchor.constraint(equalTo: liveViewSafeAreaGuide.trailingAnchor).isActive = true
+        drumContainer.topAnchor.constraint(equalTo: liveViewSafeAreaGuide.topAnchor).isActive = true
+        drumContainer.bottomAnchor.constraint(equalTo: liveViewSafeAreaGuide.bottomAnchor).isActive = true
         
         drumContainer.addArrangedSubview(snareView)
         drumContainer.addArrangedSubview(bassView)
         drumContainer.addArrangedSubview(hitHatView)
-        
-        view.addSubview(metronomeLabel)
-        metronomeLabel.font = UIFont.boldSystemFont(ofSize: 450)
-        metronomeLabel.textAlignment = NSTextAlignment.center
-        metronomeLabel.text = ""
-        metronomeLabel.textColor = UIColor.white.withAlphaComponent(0.2)
-        metronomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        metronomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        metronomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 65).isActive = true
-        metronomeLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        metronomeLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
-        
-        metronome.start()
-        currentLesson.playSong()
     }
 }
 
@@ -153,3 +178,38 @@ extension DrumSetViewController: DrumItemDelegate {
     }
 }
 
+class DrumSectionView: UIView {
+    let gradientLayer: CAGradientLayer = CAGradientLayer()
+    public var drumPart: DrumPart
+    var drumCharacteristics: DrumCharacteristic
+    
+    public init(drumPart: DrumPart) {
+        self.drumPart = drumPart
+        drumCharacteristics = drumPart.getCharacteristics()
+        super.init(frame: CGRect.zero)
+        self.isOpaque = false
+    }
+    
+    public required init(coder aDecoder: NSCoder) {
+        drumPart = .bass
+        drumCharacteristics = drumPart.getCharacteristics()
+        super.init(coder: aDecoder)!
+        self.isOpaque = false
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        gradientLayer.frame = bounds
+    }
+    
+    public override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        gradientLayer.frame = rect
+        gradientLayer.colors = [drumCharacteristics.mainColor.withAlphaComponent(0.8).cgColor, drumCharacteristics.mainColor.withAlphaComponent(0.2).cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
+}

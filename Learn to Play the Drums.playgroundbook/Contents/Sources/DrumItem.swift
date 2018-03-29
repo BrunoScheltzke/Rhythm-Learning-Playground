@@ -6,7 +6,6 @@
 //  Copyright © 2018 Bruno Scheltzke. All rights reserved.
 //
 
-import SpriteKit
 import UIKit
 
 public enum DrumPart {
@@ -45,8 +44,6 @@ public class DrumItem: UIView {
     let progressCircleRadius: CGFloat = 71.5
     
     var drumCharacteristics: DrumCharacteristic
-    
-    let gradientLayer: CAGradientLayer = CAGradientLayer()
     
     let drumImageContainer = UIView()
     
@@ -88,8 +85,6 @@ public class DrumItem: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        gradientLayer.frame = bounds
-        
         let circularPath = UIBezierPath(arcCenter: .zero, radius: drumImageContainer.frame.width/2, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         
         trackLayer.path = circularPath.cgPath
@@ -107,12 +102,6 @@ public class DrumItem: UIView {
     
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
-        gradientLayer.frame = rect
-        gradientLayer.colors = [drumCharacteristics.mainColor.withAlphaComponent(0.8).cgColor, drumCharacteristics.mainColor.withAlphaComponent(0.2).cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
-        layer.insertSublayer(gradientLayer, at: 0)
         
         let circularPath = UIBezierPath(arcCenter: .zero, radius: drumImageContainer.frame.width/2, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         
@@ -214,7 +203,7 @@ public class DrumItem: UIView {
         drumImageContainer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.18).isActive = true
         drumImageContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        let bottomSpacing: CGFloat = -200
+        let bottomSpacing: CGFloat = -(trackLineWidth*1.5 + progressCircleRadius)
         
         drumImageContainer.centerYAnchor.constraint(equalTo: self.bottomAnchor, constant: bottomSpacing).isActive = true
         
