@@ -10,8 +10,9 @@ import Foundation
 import AVFoundation
 
 public enum Song {
-    case song1
     case billieJean
+    case song1
+    case song2
 }
 
 public class SoundManager {
@@ -22,6 +23,7 @@ public class SoundManager {
     var hitHatPlayer = AVAudioPlayer()
     var billieJeanPlayer = AVAudioPlayer()
     var song1Player = AVAudioPlayer()
+    var song2Player = AVAudioPlayer()
     
     private init() {
         do {
@@ -46,6 +48,11 @@ public class SoundManager {
             song1Player = try AVAudioPlayer(contentsOf: urlSong1)
             song1Player.numberOfLoops = -1
             song1Player.prepareToPlay()
+            
+            let urlSong2 = URL.init(fileURLWithPath: Bundle.main.path(forResource: GlobalConstants.song2, ofType: "mp3")!)
+            song2Player = try AVAudioPlayer(contentsOf: urlSong2)
+            song2Player.numberOfLoops = -1
+            song2Player.prepareToPlay()
         } catch {
             print(error)
         }
@@ -73,6 +80,9 @@ public class SoundManager {
         case .song1:
             song1Player.currentTime = 0
             song1Player.play()
+        case .song2:
+            song2Player.currentTime = 0
+            song2Player.play()
         }
     }
 
@@ -81,5 +91,7 @@ public class SoundManager {
         snarePlayer.stop()
         hitHatPlayer.stop()
         billieJeanPlayer.stop()
+        song1Player.stop()
+        song2Player.stop()
     }
 }

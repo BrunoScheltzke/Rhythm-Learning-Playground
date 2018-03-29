@@ -8,18 +8,19 @@
 
 import Foundation
 
-struct GlobalConstants {
-    static let snareSound = "snareSound"
-    static let bassSound = "bassSound"
-    static let hitHatSound = "hitHatSound"
-    static let billieJeanSong = "billieJeanSong"
-    static let song1 = "song1"
+public struct GlobalConstants {
+    public static let snareSound = "snareSound"
+    public static let bassSound = "bassSound"
+    public static let hitHatSound = "hitHatSound"
+    public static let billieJeanSong = "billieJeanSong"
+    public static let song1 = "song1"
+    public static let song2 = "song2"
     
-    static let snareImage = "snareDrum"
-    static let bassImage = "bassDrum"
-    static let hitHatImage = "hitHatDrum"
+    public static let snareImage = "snareDrum"
+    public static let bassImage = "bassDrum"
+    public static let hitHatImage = "hitHatDrum"
     
-    static let kBipDurationSeconds: Float32 = 0.020
-    static let kTempoChangeResponsivenessSeconds: Float32 = 0.250
+    public static let kBipDurationSeconds: Float32 = 0.020
+    public static let kTempoChangeResponsivenessSeconds: Float32 = 0.250
 }
 
