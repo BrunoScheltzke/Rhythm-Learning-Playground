@@ -30,43 +30,44 @@ public typealias DrumCharacteristic = (image: UIImage, mainColor: UIColor, secon
 
 public class DrumItem: UIView {
     public var delegate: DrumItemDelegate!
-    public var drumPart: DrumPart
-    public var drumItemImage = UIImageView()
     
-    public var currentProgress: Double = 0
+    public var drumPart: DrumPart
+    
     public var noteGoal: Int = 0
     public var notesPlayed: Int = 0
     
-    public let trackLineWidth: CGFloat = 16
+    var drumItemImage = UIImageView()
     
-    public let progressCircleRadius: CGFloat = 71.5
+    var currentProgress: Double = 0
     
-    public var yBassPosition: CGFloat = 0
-    public var yDrumPosition: CGFloat = 0
+    let trackLineWidth: CGFloat = 16
     
-    public var drumCharacteristics: DrumCharacteristic
+    let progressCircleRadius: CGFloat = 71.5
     
-    public let gradientLayer: CAGradientLayer = CAGradientLayer()
+    var drumCharacteristics: DrumCharacteristic
     
-    public let drumImageContainer = UIView()
+    let gradientLayer: CAGradientLayer = CAGradientLayer()
     
-    public let notePositioningView = UIView()
+    let drumImageContainer = UIView()
     
-    public let noteSize: CGFloat = 50
+    var emitter = CAEmitterLayer()
     
-    public var notes: [NoteView] = []
+    var notes: [NoteView] = []
     
-    public var emitter = CAEmitterLayer()
+    let noteSize: CGFloat = 50
     
-    let topView = UIView()
-    let middle1View = UIView()
-    let middle2View = UIView()
-    let bottom = UIView()
+    //positions of the notes
+    let notePositioningView = UIView()
+    let notePosition1View = UIView()
+    let notePosition2View = UIView()
+    let notePosition3View = UIView()
+    let notePosition4View = UIView()
+    let notePosition5View = UIView()
     
     //track layer
-    public let trackLayer = CAShapeLayer()
-    public let shapeLayer = CAShapeLayer()
-    public let pulsatingLayer = CAShapeLayer()
+    let trackLayer = CAShapeLayer()
+    let shapeLayer = CAShapeLayer()
+    let pulsatingLayer = CAShapeLayer()
     
     public init(drumPart: DrumPart) {
         self.drumPart = drumPart
@@ -162,7 +163,7 @@ public class DrumItem: UIView {
         layer.addSublayer(emitter)
     }
     
-    public func setUpEmitterCell() -> CAEmitterCell {
+    func setUpEmitterCell() -> CAEmitterCell {
         let cell = CAEmitterCell()
         
         let intensity = Float(0.2)
@@ -185,19 +186,7 @@ public class DrumItem: UIView {
         return cell
     }
     
-    public func startEmitter() {
-        let animation = CABasicAnimation()
-        animation.isRemovedOnCompletion = true
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-        animation.duration = CFTimeInterval(0.8)
-        animation.fromValue = 5
-        animation.toValue = 0
-        animation.keyPath = "emitter.birthRate"
-        
-        emitter.add(animation, forKey: "birthRate")
-    }
-    
-    public func startEmission() {
+    func startEmission() {
         emitter.setValue(3, forKeyPath: "emitterCells.cell1.birthRate")
         emitter.setValue(3, forKeyPath: "emitterCells.cell2.birthRate")
         emitter.setValue(3, forKeyPath: "emitterCells.cell3.birthRate")
@@ -209,7 +198,7 @@ public class DrumItem: UIView {
         }
     }
     
-    public func stopEmission() {
+    func stopEmission() {
         emitter.setValue(0, forKeyPath: "emitterCells.cell1.birthRate")
         emitter.setValue(0, forKeyPath: "emitterCells.cell2.birthRate")
         emitter.setValue(0, forKeyPath: "emitterCells.cell3.birthRate")
@@ -217,7 +206,7 @@ public class DrumItem: UIView {
         emitter.birthRate = 0
     }
     
-    public func setup() {
+    func setup() {
         drumImageContainer.isOpaque = false
         addSubview(drumImageContainer)
         drumImageContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -247,11 +236,11 @@ public class DrumItem: UIView {
         notePositionsStackView.distribution = .fillEqually
         notePositionsStackView.axis = .vertical
         
-        notePositionsStackView.addArrangedSubview(topView)
-        notePositionsStackView.addArrangedSubview(middle1View)
-        notePositionsStackView.addArrangedSubview(middle2View)
-        notePositionsStackView.addArrangedSubview(bottom)
-        notePositionsStackView.addArrangedSubview(UIView())
+        notePositionsStackView.addArrangedSubview(notePosition1View)
+        notePositionsStackView.addArrangedSubview(notePosition2View)
+        notePositionsStackView.addArrangedSubview(notePosition3View)
+        notePositionsStackView.addArrangedSubview(notePosition4View)
+        notePositionsStackView.addArrangedSubview(notePosition5View)
         
         //add button to respond to interactions
         let button = UIButton(type: .system)
@@ -274,38 +263,38 @@ public class DrumItem: UIView {
         drumItemImage.centerYAnchor.constraint(equalTo: drumImageContainer.centerYAnchor).isActive = true
         
         let bottomLineView1 = UIView()
-        topView.addSubview(bottomLineView1)
+        notePosition1View.addSubview(bottomLineView1)
         bottomLineView1.translatesAutoresizingMaskIntoConstraints = false
-        bottomLineView1.bottomAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        bottomLineView1.leadingAnchor.constraint(equalTo: topView.leadingAnchor).isActive = true
-        bottomLineView1.trailingAnchor.constraint(equalTo: topView.trailingAnchor).isActive = true
+        bottomLineView1.bottomAnchor.constraint(equalTo: notePosition1View.bottomAnchor).isActive = true
+        bottomLineView1.leadingAnchor.constraint(equalTo: notePosition1View.leadingAnchor).isActive = true
+        bottomLineView1.trailingAnchor.constraint(equalTo: notePosition1View.trailingAnchor).isActive = true
         bottomLineView1.heightAnchor.constraint(equalToConstant: 2).isActive = true
         bottomLineView1.backgroundColor = drumCharacteristics.mainColor.withAlphaComponent(0.4)
         
         let bottomLineView2 = UIView()
-        middle1View.addSubview(bottomLineView2)
+        notePosition2View.addSubview(bottomLineView2)
         bottomLineView2.translatesAutoresizingMaskIntoConstraints = false
-        bottomLineView2.bottomAnchor.constraint(equalTo: middle1View.bottomAnchor).isActive = true
-        bottomLineView2.leadingAnchor.constraint(equalTo: middle1View.leadingAnchor).isActive = true
-        bottomLineView2.trailingAnchor.constraint(equalTo: middle1View.trailingAnchor).isActive = true
+        bottomLineView2.bottomAnchor.constraint(equalTo: notePosition2View.bottomAnchor).isActive = true
+        bottomLineView2.leadingAnchor.constraint(equalTo: notePosition2View.leadingAnchor).isActive = true
+        bottomLineView2.trailingAnchor.constraint(equalTo: notePosition2View.trailingAnchor).isActive = true
         bottomLineView2.heightAnchor.constraint(equalToConstant: 2).isActive = true
         bottomLineView2.backgroundColor = drumCharacteristics.mainColor.withAlphaComponent(0.4)
         
         let bottomLineView3 = UIView()
-        middle2View.addSubview(bottomLineView3)
+        notePosition3View.addSubview(bottomLineView3)
         bottomLineView3.translatesAutoresizingMaskIntoConstraints = false
-        bottomLineView3.bottomAnchor.constraint(equalTo: middle2View.bottomAnchor).isActive = true
-        bottomLineView3.leadingAnchor.constraint(equalTo: middle2View.leadingAnchor).isActive = true
-        bottomLineView3.trailingAnchor.constraint(equalTo: middle2View.trailingAnchor).isActive = true
+        bottomLineView3.bottomAnchor.constraint(equalTo: notePosition3View.bottomAnchor).isActive = true
+        bottomLineView3.leadingAnchor.constraint(equalTo: notePosition3View.leadingAnchor).isActive = true
+        bottomLineView3.trailingAnchor.constraint(equalTo: notePosition3View.trailingAnchor).isActive = true
         bottomLineView3.heightAnchor.constraint(equalToConstant: 2).isActive = true
         bottomLineView3.backgroundColor = drumCharacteristics.mainColor.withAlphaComponent(0.4)
         
         let bottomLineView4 = UIView()
-        bottom.addSubview(bottomLineView4)
+        notePosition4View.addSubview(bottomLineView4)
         bottomLineView4.translatesAutoresizingMaskIntoConstraints = false
-        bottomLineView4.bottomAnchor.constraint(equalTo: bottom.bottomAnchor).isActive = true
-        bottomLineView4.leadingAnchor.constraint(equalTo: bottom.leadingAnchor).isActive = true
-        bottomLineView4.trailingAnchor.constraint(equalTo: bottom.trailingAnchor).isActive = true
+        bottomLineView4.bottomAnchor.constraint(equalTo: notePosition4View.bottomAnchor).isActive = true
+        bottomLineView4.leadingAnchor.constraint(equalTo: notePosition4View.leadingAnchor).isActive = true
+        bottomLineView4.trailingAnchor.constraint(equalTo: notePosition4View.trailingAnchor).isActive = true
         bottomLineView4.heightAnchor.constraint(equalToConstant: 2).isActive = true
         bottomLineView4.backgroundColor = drumCharacteristics.mainColor.withAlphaComponent(0.4)
     }
@@ -319,17 +308,15 @@ public class DrumItem: UIView {
         note.centerXAnchor.constraint(equalTo: notePositioningView.centerXAnchor)
             .isActive = true
         note.heightAnchor.constraint(equalToConstant: noteSize).isActive = true
-        let widthConstraint = note.widthAnchor.constraint(equalToConstant: noteSize)
-        widthConstraint.isActive = true
+        note.widthAnchor.constraint(equalToConstant: noteSize).isActive = true
         let yConstraint = note.centerYAnchor.constraint(equalTo: notePositioningView.topAnchor, constant: noteSize/2)
         yConstraint.isActive = true
         note.yConstraint = yConstraint
-        note.widthConstraint = widthConstraint
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 4.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
-                note.center.y += self.topView.center.y
-                note.yConstraint.constant = self.topView.center.y
+                note.center.y += self.notePosition1View.center.y
+                note.yConstraint.constant = self.notePosition1View.center.y
                 note.position = 1
             }, completion: nil)
         }
@@ -337,8 +324,8 @@ public class DrumItem: UIView {
     
     public func updateNoteViews(withTolerance tolerance: Double) {
         notes.forEach { (note) in
-            let increase = middle2View.center.y - middle1View.center.y
-        
+            let increase = notePosition3View.center.y - notePosition2View.center.y
+            
             switch note.position {
             case 1:
                 UIView.animate(withDuration: tolerance, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 20, options: [.curveEaseInOut], animations: {
@@ -387,7 +374,7 @@ public class DrumItem: UIView {
         }
     }
     
-    public func hitNote() {
+    func hitNote() {
         startEmission()
         pulsatingLayer.pulsate()
         notes.first?.wasHit = true
@@ -396,18 +383,7 @@ public class DrumItem: UIView {
             self.notes.first?.removeFromSuperview()
             self.notes.removeFirst()
         }
-        
-        
-//        DispatchQueue.main.async {
-//            self.notes.first?.center.y = self.bottom.center.y + self.bottom.frame.height + self.trackLineWidth/1.5
-//            self.notes.first?.yConstraint.constant = self.bottom.center.y + self.bottom.frame.height + self.trackLineWidth/1.5
-//
-//            self.notes.first?.layer.pulsate(toValue: 1.4, withDuration: 0.4)
-//            self.notes.first?.backgroundColor = self.drumCharacteristics.mainColor.withAlphaComponent(1)
-        
-//        }
     }
-    
     
     public func increaseProgress() {
         hitNote()
@@ -427,7 +403,7 @@ public class DrumItem: UIView {
         notesPlayed += 1
     }
     
-    @objc public func didTapView() {
+    @objc func didTapView() {
         SoundManager.shared.playSound(for: drumPart)
         delegate.didPlayDrumItem(self)
     }
@@ -436,4 +412,5 @@ public class DrumItem: UIView {
 public protocol DrumItemDelegate {
     func didPlayDrumItem(_ drumItem: DrumItem)
 }
+
 

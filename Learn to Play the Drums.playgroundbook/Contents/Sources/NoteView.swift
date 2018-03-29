@@ -10,7 +10,6 @@ import UIKit
 
 public class NoteView: UIView {
     public var yConstraint: NSLayoutConstraint!
-    public var widthConstraint: NSLayoutConstraint!
     
     public var barBeat: BarBeat
     

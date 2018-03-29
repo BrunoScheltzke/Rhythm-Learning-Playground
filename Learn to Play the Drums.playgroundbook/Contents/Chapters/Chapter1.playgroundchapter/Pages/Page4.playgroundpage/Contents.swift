@@ -3,13 +3,14 @@
  
  Now that you are a pro😎, we are going to setup a song so you can play it along.
  
- Here is a couple of songs that you can play with the beat you just learned:
+ Here is a couple of songs that you are already able to play with the beat you just learned:
  
  - Highway to Hell - AC/DC
  - Welcome to the jungle - Guns N' Roses
  - Billie Jean - Michael Jackson
  - Basket Case - Green Day
  - Holiday - Green Day
+ - Alok - Hear me now
  
  
  **Have fun on playing your first song!!**

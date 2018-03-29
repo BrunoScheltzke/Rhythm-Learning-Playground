@@ -13,10 +13,15 @@ public struct Lesson {
     
     /**
      The instruments to be played at a specific bar and beat;
-     Exemple ["13"] = [.snare, .bass] -> snare and bass to be played at Bar 1 Beat 3
+     Exemple ["23"] = [.snare, .bass] -> snare and bass to be played at Bar 1 Beat 3
+     
+     The bar needs to be at least 2 so there will be at least 4 beats for the user to follow the rhythm
      */
     public var tablature: [String: [DrumPart]]
     
+    /**
+     When set to true, a tablature need to have the information related to the 4 beats of the first bar only. The next bars will have the same information of the first bar
+     */
     public var isLoop: Bool = false
     
     public var snareGoal: Int
