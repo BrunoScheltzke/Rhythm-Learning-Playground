@@ -6,26 +6,61 @@
 	<dict>
 		<key>snare</key>
 		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>Title</key>
+				<string>Adding the snare drum</string>
+				<key>PageReference</key>
+				<string>First beat/Adding the snare drum</string>
+			</dict>
 			<key>Definition</key>
 			<string>Percussion instrument. Usually played with the left hand. Represented in this book by the color yellow. Positioned at the very left of the view.</string>
 		</dict>
 		<key>bass</key>
 		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>Title</key>
+				<string>Adding the bass drum</string>
+				<key>PageReference</key>
+				<string>First beat/Adding the bass drum</string>
+			</dict>
 			<key>Definition</key>
 			<string>(Kick Drum) Percussion instrument. Played with the foot. Represented in this book by the color green. Positioned in the middle of the view.</string>
 		</dict>
 		<key>hit-hat</key>
 		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>Title</key>
+				<string>Adding the snare drum</string>
+				<key>PageReference</key>
+				<string>First beat/Adding the snare drum</string>
+			</dict>
 			<key>Definition</key>
 			<string>Percussion instrument. Usually played with the right hand and left foot. Composed by two cymbals. Represented in this book by the color blue and positioned at the very right of the view.</string>
 		</dict>
 		<key>metronome</key>
 		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>Title</key>
+				<string>Adding the bass drum</string>
+				<key>PageReference</key>
+				<string>First beat/Adding the bass drum</string>
+			</dict>
 			<key>Definition</key>
 			<string>Device that produces a sound at a regular interval usually in beats per minute (BPM) to set the tempo.</string>
 		</dict>
 		<key>tempo</key>
 		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>Title</key>
+				<string>Following the tempo</string>
+				<key>PageReference</key>
+				<string>First beat/Following the tempo</string>
+			</dict>
 			<key>Definition</key>
 			<string>Represents the speed of a song/piece. It is usually measured in beats per minute (BPM). So a tempo of 105BPM indicates 105 beats in 60 seconds.</string>
 		</dict>
