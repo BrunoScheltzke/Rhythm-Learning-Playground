@@ -25,7 +25,9 @@ public struct Lesson {
     
     public var song: Song?
     
-    public init(name: String, tablature: [String: [DrumPart]], isLoop: Bool, snareGoal: Int, hitHatGoal: Int, bassGoal: Int, song: Song? = nil) {
+    public var tempo: Float
+    
+    public init(name: String, tablature: [String: [DrumPart]], isLoop: Bool, snareGoal: Int, hitHatGoal: Int, bassGoal: Int, song: Song? = nil, tempo: Float = 105) {
         self.name = name
         self.tablature = tablature
         self.isLoop = isLoop
@@ -33,6 +35,7 @@ public struct Lesson {
         self.hitHatGoal = hitHatGoal
         self.snareGoal = snareGoal
         self.song = song
+        self.tempo = tempo
     }
     
     public func playSong() {
@@ -54,6 +57,6 @@ public struct Lesson {
     }
     
     public static func lesson4() -> Lesson {
-        return Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8, song: Song.song2)
+        return Lesson(name: "Fourth Lesson", tablature: ["21": [DrumPart.hitHat, DrumPart.bass], "22": [DrumPart.hitHat, DrumPart.snare], "23": [DrumPart.hitHat, DrumPart.bass], "24": [DrumPart.hitHat, DrumPart.snare]], isLoop: true, snareGoal: 8, hitHatGoal: 16, bassGoal: 8, song: Song.song2, tempo: 117)
     }
 }

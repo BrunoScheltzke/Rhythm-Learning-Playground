@@ -42,7 +42,16 @@ public class ViewController: UIViewController {
     
     public init(lesson: Lesson) {
         self.currentLesson = lesson
+        
+        metronome.setTempo(lesson.tempo)
+        tolerance = Double((60/metronome.tempoBPM)/2)
+        
         super.init(nibName: nil, bundle: nil)
+        
+        snareView.delegate = self
+        bassView.delegate = self
+        hitHatView.delegate = self
+        metronome.delegate = self
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -53,10 +62,6 @@ public class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
-        snareView.delegate = self
-        bassView.delegate = self
-        hitHatView.delegate = self
         
         let playgroundView = UIStackView()
         playgroundView.distribution = .fillEqually
@@ -94,10 +99,8 @@ public class ViewController: UIViewController {
         //playgroundView.addArrangedSubview(instructionsView)
         playgroundView.addArrangedSubview(drumContainer)
         
-        metronome.delegate = self
         metronome.start()
         currentLesson.playSong()
-        tolerance = Double((60/metronome.tempoBPM)/2)
     }
 }
 

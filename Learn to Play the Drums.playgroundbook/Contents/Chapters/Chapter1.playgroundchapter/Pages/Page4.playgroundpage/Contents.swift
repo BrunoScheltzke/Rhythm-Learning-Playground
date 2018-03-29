@@ -22,7 +22,6 @@ import PlaygroundSupport
 let vc = ViewController(lesson: Lesson.lesson4())
 
 var metronome = vc.metronome
-metronome.setTempo(117)
 
 vc.finishAssessment = {
     PlaygroundPage.current.assessmentStatus = .pass(message: "You are a pro! A great exercise now is to repeat the page 2 and ahead but every time you hit the bass drum you hit the floor with your foot. That way you’ll be almost set for real drums, since you use your foot to play the bass drum. You can also increase the tempo and repeat the exercises.")

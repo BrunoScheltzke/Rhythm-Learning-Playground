@@ -24,8 +24,6 @@ let vc = ViewController(lesson: Lesson.lesson2())
 
 var metronome = vc.metronome
 
-metronome.setTempo(105)
-
 vc.finishAssessment = {
     PlaygroundPage.current.assessmentStatus = .pass(message: "That’s great, You are almost done learning your first beat🥇 You can move to the next exercise or you can practice more if you want.")
     vc.freePlayMode = true

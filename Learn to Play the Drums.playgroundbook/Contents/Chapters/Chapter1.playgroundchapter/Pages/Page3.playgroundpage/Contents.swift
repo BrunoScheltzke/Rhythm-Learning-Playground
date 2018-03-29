@@ -17,8 +17,6 @@ let vc = ViewController(lesson: Lesson.lesson3())
 
 var metronome = vc.metronome
 
-metronome.setTempo(105)
-
 PlaygroundPage.current.assessmentStatus = .fail(hints: [" An easy way to see that is that you can play the blue and green section together in the first count. In the second count you play the blue and the yellow. Then it is just a matter of repeating that. Blue and green, blue and yellow, blue and green, blue and yellow."], solution: nil)
 
 vc.finishAssessment = {
