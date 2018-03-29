@@ -21,10 +21,6 @@ public class ViewController: UIViewController {
     
     public var currentBarBeat: BarBeat = (0,0)
     
-    public var nextSnareBarBeats: [BarBeat] = []
-    public var nextBassBarBeats: [BarBeat] = []
-    public var nextHitHatBarBeats: [BarBeat] = []
-    
     public var tolerance: Double = 0
     public var latsBeatTime: CFAbsoluteTime = 0
     
@@ -63,26 +59,20 @@ public class ViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        let playgroundView = UIStackView()
-        playgroundView.distribution = .fillEqually
-        
-        view.addSubview(playgroundView)
-        
-        playgroundView.translatesAutoresizingMaskIntoConstraints = false
-        playgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        playgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        playgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        playgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
         let drumContainer = UIStackView()
         drumContainer.distribution = .fillEqually
+        
+        view.addSubview(drumContainer)
+        
+        drumContainer.translatesAutoresizingMaskIntoConstraints = false
+        drumContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        drumContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        drumContainer.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        drumContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         drumContainer.addArrangedSubview(snareView)
         drumContainer.addArrangedSubview(bassView)
         drumContainer.addArrangedSubview(hitHatView)
-        
-        //Used on ui testing project
-        let instructionsView = UIView()
         
         view.addSubview(metronomeLabel)
         metronomeLabel.font = UIFont.boldSystemFont(ofSize: 450)
@@ -94,10 +84,6 @@ public class ViewController: UIViewController {
         metronomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 65).isActive = true
         metronomeLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         metronomeLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
-        metronomeLabel.layer.zPosition = 1.0
-        
-        //playgroundView.addArrangedSubview(instructionsView)
-        playgroundView.addArrangedSubview(drumContainer)
         
         metronome.start()
         currentLesson.playSong()
