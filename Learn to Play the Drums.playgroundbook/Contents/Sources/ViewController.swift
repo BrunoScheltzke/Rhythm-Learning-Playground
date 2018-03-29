@@ -15,20 +15,20 @@ public class ViewController: UIViewController {
     
     public var finishAssessment: (() -> Void)!
     
-    public var snareView = DrumItem(drumPart: .snare)
-    public var bassView = DrumItem(drumPart: .bass)
-    public var hitHatView = DrumItem(drumPart: .hitHat)
-    
-    public var currentBarBeat: BarBeat = (0,0)
-    
     public var tolerance: Double = 0
-    public var latsBeatTime: CFAbsoluteTime = 0
     
     public var freePlayMode: Bool = false
     
-    public let metronomeLabel = UILabel()
+    var snareView = DrumItem(drumPart: .snare)
+    var bassView = DrumItem(drumPart: .bass)
+    var hitHatView = DrumItem(drumPart: .hitHat)
     
-    public var currentLesson: Lesson = Lesson.lesson4() {
+    var currentBarBeat: BarBeat = (0,0)
+    var latsBeatTime: CFAbsoluteTime = 0
+    
+    let metronomeLabel = UILabel()
+    
+    var currentLesson: Lesson = Lesson.lesson4() {
         didSet {
             snareView.noteGoal = currentLesson.snareGoal
             hitHatView.noteGoal = currentLesson.hitHatGoal
@@ -132,7 +132,7 @@ extension ViewController: MetronomeDelegate {
         })
     }
     
-    public func barBeat(after barBeat: BarBeat) -> BarBeat {
+    fileprivate func barBeat(after barBeat: BarBeat) -> BarBeat {
         return barBeat.beat == 4 ? (barBeat.bar + 1, 1) : (barBeat.bar, barBeat.beat + 1)
     }
 }
