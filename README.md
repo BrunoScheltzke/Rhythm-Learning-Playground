@@ -5,7 +5,7 @@
 ![title](https://github.com/BrunoScheltzke/Rhythm-Learning-Playground/blob/master/IMG_0014.PNG)
 
 # The app👨‍💻
-If you ever struggled when learning a new musical instrument, then maybe rhythm is one of your problems. That's the main porpouse of my app: Help people to learn rhythm. In the app there is a basic drum beat, used in tons of famous songs, that I broke down into 4 simple lessons. At the end of the book you are able to play the whole beat along with a custom song I created for the app using Garage Band. [Youtube demo](https://www.youtube.com/watch?v=-_mpH9haHxE&feature=youtu.be).
+If you ever struggled when learning a new musical instrument, then maybe rhythm is one point to consider. That's the main porpouse of my app: Help people to learn rhythm. In the app there is a basic drum beat, used in tons of famous songs, that I broke down into 4 simple lessons. At the end of the book you are able to play the whole beat along with a custom song I created for the app using Garage Band. [Youtube demo](https://www.youtube.com/watch?v=-_mpH9haHxE&feature=youtu.be).
 
 ### How I came up with the idea💡
 I really love music. I can play many different musical instruments. But I am not so good at teaching. Once I tried to teach my cousin guitar, and we failed as he was not so good with rhythm plus my lack of teaching skills💩.
