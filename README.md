@@ -14,14 +14,6 @@ Using [Garage Band](https://www.apple.com/ca/mac/garageband/) I was able to crea
 ## Can I play? 🥁
 The app is called DuBeat and it is available on the [App Store](https://itunes.apple.com/br/app/dubeat/id1386900067?l=en...) 
 
-![Live Sequencing](.github/LiveSequencing.gif)
-## Instruments 🎹
-8-Bit Music Maker supports 3 different "wave forms", or "instruments", as I like to refer to them. While these are not the only wave forms supported in 8-bit architectures, they were certainly the most popular in 80's video games.
-
-To record, hit the record button and make sure you press play on the sequencer:
-
-![Recording](.github/Recording.gif)
-
 ## I really struggle with rhythm! What can I do?😭
 You can change the tempo (how fast you are supposed to play) with the following:
 * `metronome.setTempo funcion` -> Playground Book
