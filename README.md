@@ -15,7 +15,8 @@ Using [Garage Band](https://www.apple.com/ca/mac/garageband/) I was able to crea
 
 ## Can I play? 🥁
 The app is called DuBeat and it is available on the [App Store](https://itunes.apple.com/br/app/dubeat/id1386900067?l=en...) 
-![appstore](https://github.com/BrunoScheltzke/Rhythm-Learning-Playground/blob/master/iphoneGif.gif)
+
+<img src="https://github.com/BrunoScheltzke/Rhythm-Learning-Playground/blob/master/iphoneGif.gif" width="250">
 
 ## I really struggle with rhythm! What can I do?😭
 You can change the tempo (how fast you are supposed to play) with the following:
